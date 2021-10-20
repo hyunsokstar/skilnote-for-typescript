@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content6 %}
+<!-- loginpage hyunsok -->
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+{% blocktrans %}
+{% endblocktrans %}
+
+<img src="{% static 'logo/skilnote-for-ts1.png' %}" width="100%" height="40%" alt="" class="mb-2">
+
+
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-outline-info btn-block mb-1">Login</button>
+</form>
+<a class="primaryAction btn btn-outline-primary float-right btn-block" href="{{ signup_url }}">회원 가입</a>
+<br><br><br>
+{% endblock %}
+
+{% block sidearea6 %}
+
+유저 아이디 리스트 <br />
+<div class="user_list">
+    <!-- 유저 정보 출력 -->
+</div>
+
+
+{% endblock %}
+
+
+<script type="text/javascript">
+{% block extra_js %}
+
+    $(document).ready(function(){
+        const url = "/skilnote1/userlist/loginpage"
+        // window.history.pushState("", "", '/skilnote2/myshortcut/')
+
+        $.get(url)
+            .done((result) => {
+                $(".user_list").html(result)
+            })
+            .fail(() => {
+                console.log("fail");
+            })
+            .always(() => {
+                console.log('always');
+        })
+    });
+
+
+{% endblock %}
+</script>
