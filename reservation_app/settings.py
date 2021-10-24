@@ -11,7 +11,7 @@ SECRET_KEY = 'qki)d54cmpt_v7b5m07qh$d#o3j6#pm3gi=po&)b2a59$e859x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['141.164.40.240', '127.0.0.1', 'skilnote-for-jpa.co.kr','www.skilnote-for-jpa.co.kr','127.0.0.1']
+ALLOWED_HOSTS = ['158.247.227.197', '127.0.0.1', 'skilnote-for-ts.co.kr','www.skilnote-for-ts.co.kr','127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
